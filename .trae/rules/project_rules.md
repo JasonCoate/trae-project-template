@@ -41,7 +41,7 @@
 1. **THIS FILE (.trae/rules/project_rules.md)** - Main coordination and workflow rules
 2. **.trae/project-overview/PROJECT_STATUS.md** - Current progress and active tasks
 3. **.trae/project-overview/PRODUCT_PRD.md** - Foundational product vision and requirements
-4. **.trae/specs/** - Detailed phase specifications (phase_1.md, phase_2.md, phase_3.md)
+4. **.trae/project-overview/DEVELOPMENT_WORKFLOW.md** - Development workflow guidelines
 5. **.trae/rules/git_rules.md** - Version control and commit standards
 6. **Feature-specific docs** - .trae/features/[feature-name]/docs/ and specs/
 
@@ -50,13 +50,6 @@
 - Mark tasks with proper status: ⏳ → 🔄 → ✅
 - Document any blockers or architectural decisions
 - Update "Current Working Files" and "Next Immediate Tasks" sections
-
-### PRD Reference System
-- Always check PRD section references in feature specifications
-- Ensure feature implementations align with referenced PRD requirements
-- When creating new features, include "PRD References" section linking to relevant PRD sections
-- Maintain traceability between PRD requirements and feature implementations
-- Use numbered PRD sections (e.g., "PRD: 2.1, 3.1, 5.1") for clear referencing
 
 ### Branch Naming Convention
 - **ALWAYS use feature folder names for branches** - Branch names MUST match the exact folder names in `.trae/features/`
@@ -117,7 +110,6 @@
 ### Communication Style
 - Provide clear, actionable feedback
 - Reference specific checklist items when completing tasks
-- Reference PRD sections when explaining requirements
 - Explain technical decisions and trade-offs
 - Suggest improvements and optimizations
 - Always prioritize user experience and best practices
@@ -128,11 +120,13 @@
 - **Optimization:** [Performance, analytics, and advanced integrations]
 
 ## Key Project Files
-- `.trae/project-overview/PRODUCT_PRD.md` - Main Requirements Reference (numbered sections)
-- `.trae/project-overview/PROJECT_STATUS.md` - Single source of truth for progress, workflow, and development guidelines
-- `.trae/features/[feature-name]/specs/` - Feature-specific technical specifications
-- `.trae/features/[feature-name]/docs/` - Feature-specific documentation
+- `.trae/project-overview/PRODUCT_PRD.md` - Product Requirements Document
+- `.trae/project-overview/PROJECT_STATUS.md` - Main progress tracker
+- `.trae/project-overview/DEVELOPMENT_WORKFLOW.md` - Development workflow guidelines
+- `.trae/project-overview/README.md` - Project overview and setup
 - `.trae/rules/git_rules.md` - Git workflow and commit standards
+- `.trae/features/[feature-name]/docs/` - Feature-specific documentation
+- `.trae/features/[feature-name]/specs/` - Feature specifications
 - `[MAIN_FILE]` - Main project file
 - `[KEY_DIRECTORY_1]/` - [Description]
 - `[KEY_DIRECTORY_2]/` - [Description]
