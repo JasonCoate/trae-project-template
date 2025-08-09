@@ -4,6 +4,8 @@
 **Last Updated:** [DATE]
 **Current Phase:** Phase 1 (Foundation)
 
+> **⚠️ IMPORTANT**: Before starting any feature work, ALWAYS follow the workflow in [Project Rules](../rules/project_rules.md) - the main coordination file for this project.
+
 ## Overall Progress
 
 - **Phase 1:** 🔄 In Progress (0% complete)
@@ -90,26 +92,56 @@
 
 ---
 
-## Recent Updates
+## Development Workflow
 
-### [DATE]
-- [Update description]
-- [Progress made]
-- [Issues encountered]
-- [Next steps]
+### Before Starting Any Task
+- [ ] **MANDATORY**: Follow Pre-Feature Development Workflow in [Project Rules](../rules/project_rules.md)
+- [ ] Verify previous feature is complete, committed, and merged
+- [ ] Check git status and ensure clean working directory
+- [ ] Review current phase specifications in `.trae/specs/`
+- [ ] Check feature documentation in `.trae/features/[feature-name]/`
+- [ ] Create or switch to appropriate feature branch
+- [ ] Update this status file with task progress
 
-### [DATE]
-- [Update description]
-- [Progress made]
-- [Issues encountered]
-- [Next steps]
+### Feature Branch Strategy
+- Use branch naming: `feature/[exact-folder-name]` (matching `.trae/features/` structure)
+- Update progress in this file before committing
+- Test thoroughly before marking tasks complete
+
+### Progress Updates
+- Update task status: ⏳ → 🔄 → ✅
+- Add notes for significant decisions or blockers
+- Document any architectural changes
+
+### Current Working Files
+- [List key files being modified]
+- [Note any dependencies or related components]
+
+### Next Immediate Tasks
+1. [Priority task 1]
+2. [Priority task 2]
+3. [Priority task 3]
+
+### Quality Standards
+- Follow project coding standards
+- Implement proper error handling
+- Add comprehensive validation
+- Test across different user roles
+- Ensure responsive design
+
+### Testing Priorities
+- [ ] Unit tests for new functionality
+- [ ] Integration tests for API endpoints
+- [ ] Cross-browser compatibility
+- [ ] WordPress multisite compatibility
+- [ ] Security validation
 
 ---
 
 ## Current Blockers
 
 | Issue | Impact | Status | Resolution Plan |
-|-------|--------|--------|----------------|
+|-------|--------|--------|--------------|
 | [Blocker 1] | [High/Medium/Low] | [Status] | [Plan] |
 | [Blocker 2] | [High/Medium/Low] | [Status] | [Plan] |
 

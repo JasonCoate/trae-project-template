@@ -1,6 +1,31 @@
 # [PROJECT_NAME] Project Rules
 
-These rules guide AI behavior when working on the [PROJECT_NAME] project. All AI assistance must follow these guidelines to ensure consistency, quality, and adherence to project specifications.
+**MAIN COORDINATION FILE** - This file serves as the central coordination point for all project activities. All AI assistance must follow these guidelines to ensure consistency, quality, and adherence to project specifications.
+
+## CRITICAL: Pre-Feature Development Workflow
+
+### MANDATORY Checks Before Starting Any Feature Work
+1. **Git Status Check**: ALWAYS verify current branch and working directory status
+   ```bash
+   git status
+   git branch
+   ```
+2. **Previous Feature Completion**: Ensure the previous feature is FULLY completed:
+   - All tasks marked as ✅ in PROJECT_STATUS.md
+   - All changes committed and pushed
+   - Feature branch merged to main
+   - Working directory clean
+3. **Branch Management**: 
+   - Switch to main branch: `git checkout main`
+   - Pull latest changes: `git pull origin main`
+   - Create new feature branch: `git checkout -b feature/[exact-folder-name]`
+4. **Documentation Update**: Update PROJECT_STATUS.md with new feature progress before making any code changes
+
+### NEVER Begin Feature Work Without:
+- ✅ Confirming previous feature is complete and merged
+- ✅ Verifying clean working directory
+- ✅ Creating proper feature branch
+- ✅ Updating PROJECT_STATUS.md with current task
 
 ## Project Context
 
@@ -12,13 +37,19 @@ These rules guide AI behavior when working on the [PROJECT_NAME] project. All AI
 
 ## AI Behavior Guidelines
 
-### Always Reference Project Documentation
-- Reference .trae/project-overview/PRODUCT_PRD.md for foundational product vision and requirements
-- Check .trae/project-overview/PROJECT_STATUS.md for current project progress before starting any task
-- Follow specifications in .trae/specs/ directory (phase_1.md, phase_2.md, phase_3.md)
-- Update .trae/project-overview/PROJECT_STATUS.md when completing checklist items
-- Reference .trae/project-overview/DEVELOPMENT_CHECKLIST.md for daily development tasks
-- Follow .trae/rules/git_rules.md for version control and commit standards
+### Always Reference Project Documentation (In Priority Order)
+1. **THIS FILE (.trae/rules/project_rules.md)** - Main coordination and workflow rules
+2. **.trae/project-overview/PROJECT_STATUS.md** - Current progress and active tasks
+3. **.trae/project-overview/PRODUCT_PRD.md** - Foundational product vision and requirements
+4. **.trae/specs/** - Detailed phase specifications (phase_1.md, phase_2.md, phase_3.md)
+5. **.trae/rules/git_rules.md** - Version control and commit standards
+6. **Feature-specific docs** - .trae/features/[feature-name]/docs/ and specs/
+
+### Documentation Update Requirements
+- ALWAYS update PROJECT_STATUS.md when starting, progressing, or completing tasks
+- Mark tasks with proper status: ⏳ → 🔄 → ✅
+- Document any blockers or architectural decisions
+- Update "Current Working Files" and "Next Immediate Tasks" sections
 
 ### PRD Reference System
 - Always check PRD section references in feature specifications
@@ -98,8 +129,7 @@ These rules guide AI behavior when working on the [PROJECT_NAME] project. All AI
 
 ## Key Project Files
 - `.trae/project-overview/PRODUCT_PRD.md` - Main Requirements Reference (numbered sections)
-- `.trae/project-overview/PROJECT_STATUS.md` - Main progress tracker
-- `.trae/project-overview/DEVELOPMENT_CHECKLIST.md` - Daily development reference
+- `.trae/project-overview/PROJECT_STATUS.md` - Single source of truth for progress, workflow, and development guidelines
 - `.trae/features/[feature-name]/specs/` - Feature-specific technical specifications
 - `.trae/features/[feature-name]/docs/` - Feature-specific documentation
 - `.trae/rules/git_rules.md` - Git workflow and commit standards

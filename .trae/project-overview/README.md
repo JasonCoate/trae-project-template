@@ -73,11 +73,11 @@ cd [project-name]
 ### Development Setup
 1. **Read Documentation**
    - Review `.trae/project-overview/PRODUCT_PRD.md` for requirements
-- Check `.trae/project-overview/FEATURE_STATUS.md` for current priorities
-- Follow `.trae/project-overview/DEVELOPMENT_WORKFLOW.md` for process
+   - Check `.trae/project-overview/PROJECT_STATUS.md` for current priorities and workflow
+   - Follow development workflow outlined in `PROJECT_STATUS.md`
 
 2. **Choose a Feature**
-   - Select from active features in `FEATURE_STATUS.md`
+   - Select from active features in `PROJECT_STATUS.md`
    - Review feature specifications in `.trae/features/[feature]/specs/`
    - Check dependencies and prerequisites
 
@@ -136,10 +136,9 @@ cd [project-name]
 ## Project Resources
 
 ### Documentation
+- **[Project Rules](../rules/project_rules.md)** - **MAIN COORDINATION FILE** - Start here for all development work
+- **[Project Status](PROJECT_STATUS.md)** - Current progress tracking and active tasks
 - **[Product Requirements](PRODUCT_PRD.md)** - Complete project requirements
-- **[Feature Status](FEATURE_STATUS.md)** - Current development status
-- **[Development Workflow](DEVELOPMENT_WORKFLOW.md)** - Development process
-- **[Project Status](PROJECT_STATUS.md)** - Overall project progress
 
 ### Development Tools
 - **Version Control:** Git with [branching strategy]
@@ -156,10 +155,11 @@ cd [project-name]
 ## Contributing
 
 ### Getting Started
-1. Read the [Development Workflow](DEVELOPMENT_WORKFLOW.md)
-2. Check [Feature Status](FEATURE_STATUS.md) for available tasks
-3. Review feature specifications in `.trae/features/`
-4. Follow coding standards and testing requirements
+1. **START HERE**: Read [Project Rules](../rules/project_rules.md) - the main coordination file
+2. Follow the mandatory pre-feature workflow in Project Rules
+3. Check [Project Status](PROJECT_STATUS.md) for current priorities and available tasks
+4. Review feature specifications in `.trae/features/`
+5. Follow coding standards and testing requirements
 
 ### Pull Request Process
 1. Create feature branch from main
