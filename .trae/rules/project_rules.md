@@ -27,6 +27,13 @@ These rules guide AI behavior when working on the [PROJECT_NAME] project. All AI
 - Maintain traceability between PRD requirements and feature implementations
 - Use numbered PRD sections (e.g., "PRD: 2.1, 3.1, 5.1") for clear referencing
 
+### Branch Naming Convention
+- **ALWAYS use feature folder names for branches** - Branch names MUST match the exact folder names in `.trae/features/`
+- When suggesting branch creation, use: `feature/[exact-folder-name]`
+- Available feature branches correspond to folders in `.trae/features/` directory
+- Example: For work on user management → `feature/user-management` (matches `.trae/features/user-management/`)
+- Example: For work on API integration → `feature/api-integration` (matches `.trae/features/api-integration/`)
+
 ### Feature-Based Development
 - Organize work by feature areas under .trae/features/
 - Check both feature specs and feature docs when working on implementations

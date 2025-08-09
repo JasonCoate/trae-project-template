@@ -4,6 +4,7 @@
 **Dependencies:** List any dependencies  
 **Estimated Effort:** X weeks/days  
 **Timeline:** Foundation milestone  
+**Feature Branch:** `feature/example-feature`  
 **PRD References:** PRODUCT_PRD.md: X.X, Y.Y, Z.Z
 
 ## 1. Overview

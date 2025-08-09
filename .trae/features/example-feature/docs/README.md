@@ -11,6 +11,10 @@ This directory contains documentation for the Example Feature.
 
 ## Quick Reference
 
+### Branch Information
+- **Feature Branch:** `feature/example-feature`
+- **Branch Name Rule:** Must match this folder name exactly (`example-feature`)
+
 ### Related Specifications
 - [Example Specification](../specs/example-specification.md)
 

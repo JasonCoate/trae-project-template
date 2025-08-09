@@ -7,8 +7,11 @@ These rules guide AI behavior for git operations and version control practices i
 ### Branch Management
 - **Never commit directly to main branch** - All development must happen on feature branches
 - **Create feature branches from main** - Always start new branches from the latest main
-- **Use descriptive branch names** following this pattern:
-  - `feature/description` - For new features
+- **Branch names MUST match feature folder names** - For feature development, branch names must exactly match the corresponding folder names in `.trae/features/`
+  - Example: For `.trae/features/user-management/` → use `feature/user-management`
+  - Example: For `.trae/features/api-integration/` → use `feature/api-integration`
+  - Example: For `.trae/features/dashboard/` → use `feature/dashboard`
+- **Non-feature branches** follow this pattern:
   - `fix/description` - For bug fixes
   - `refactor/description` - For code refactoring
   - `test/description` - For test-related changes

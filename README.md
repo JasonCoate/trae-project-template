@@ -44,7 +44,14 @@ All feature specifications include:
 Each specification includes:
 - Development priority and dependencies
 - Estimated effort and timeline
+- Feature branch name (must match folder name)
 - Clear implementation tasks and success criteria
+
+### 5. Branch Naming Convention
+Feature branches must exactly match the feature folder names:
+- Feature folder: `.trae/features/user-management/` → Branch: `feature/user-management`
+- Feature folder: `.trae/features/api-integration/` → Branch: `feature/api-integration`
+- This ensures consistency between documentation and version control
 
 ## Getting Started
 
@@ -70,6 +77,7 @@ Each specification includes:
 
 ### Naming Conventions
 - Feature directories: `kebab-case` (e.g., `form-management`, `user-authentication`)
+- Feature branches: `feature/[exact-folder-name]` (e.g., `feature/form-management`, `feature/user-authentication`)
 - Specification files: descriptive names ending in `.md`
 - Documentation files: `README.md` for overviews, descriptive names for specific docs
 
