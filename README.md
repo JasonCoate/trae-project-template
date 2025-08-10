@@ -36,9 +36,10 @@ This template demonstrates the streamlined organizational structure and best pra
 
 ```
 1. Give AI: "Follow the QUICKSTART.md to set up this template for [project name]"
-2. Give AI: "Update the template PRD with this: [your PRD content]"
-3. Give AI: "Follow the Master Coordination Guide for all development"
-4. Start building features!
+2. Give AI: "Follow the project_rules.md for Trae IDE compatibility"
+3. Give AI: "Update the template PRD with this: [your PRD content]"
+4. Give AI: "Follow the Master Coordination Guide for all development"
+5. Start building features!
 ```
 
 This approach leverages the streamlined documentation system, making it much easier for AI to understand project requirements and follow consistent workflows.
