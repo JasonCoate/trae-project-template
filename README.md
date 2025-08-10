@@ -1,11 +1,54 @@
 # Trae Project Template
 
-This template demonstrates the organizational structure and best practices developed for Trae AI projects, featuring a feature-based architecture with comprehensive documentation, traceability, and integrated task management.
+This template demonstrates the streamlined organizational structure and best practices developed for Trae AI projects, featuring a feature-based architecture with consolidated documentation, traceability, and integrated task management.
+
+## 🚀 Quick Start
+
+### For AI Assistants
+1. **Follow**: [Master Coordination Guide](./.trae/documents/MASTER_COORDINATION_GUIDE.md)
+2. **Customize**: Update project_rules.md with project-specific requirements
+
+### For Developers
+1. **Start with**: [Master Coordination Guide](./.trae/documents/MASTER_COORDINATION_GUIDE.md)
+2. **Quick setup**: Follow the pre-work checklist in the guide
+3. **Customize**: Update project-specific sections in the guide
+
+## ✅ Optimal AI Onboarding Process
+
+**For New Projects:**
+1. **Point AI to QUICKSTART.md** - Contains complete 3-minute setup process
+2. **Point AI to project_rules.md** - Essential for Trae IDE to work correctly with AI agents
+3. **Point AI to Master Coordination Guide** - Single source of truth for all workflow
+4. **Provide your PRD** - AI can update the template's PRD file with your requirements
+5. **You're ready to go!** - AI will follow the consolidated workflow
+
+## 🎯 Why This Works Well
+
+**Single Source of Truth**: The Master Coordination Guide eliminates the confusion of multiple scattered files.
+
+**Clear Setup Path**: QUICKSTART.md provides step-by-step instructions for both AI assistants and developers, with specific sections for each.
+
+**PRD Integration**: The template's PRD structure is designed to be easily replaced with your project's requirements while maintaining the numbered referencing system.
+
+**Immediate Productivity**: Once setup is complete, AI assistants have everything they need in one place - no more hunting through multiple documentation files.
+
+## 📋 Recommended Workflow
+
+```
+1. Give AI: "Follow the QUICKSTART.md to set up this template for [project name]"
+2. Give AI: "Update the template PRD with this: [your PRD content]"
+3. Give AI: "Follow the Master Coordination Guide for all development"
+4. Start building features!
+```
+
+This approach leverages the streamlined documentation system, making it much easier for AI to understand project requirements and follow consistent workflows.
 
 ## Directory Structure
 
 ```
 .trae/
+├── documents/             # NEW: Single source of truth
+│   └── MASTER_COORDINATION_GUIDE.md  # Complete workflow guide
 ├── features/              # Feature-based organization
 │   └── example-feature/   # Example feature structure
 │       ├── docs/          # Feature documentation
@@ -13,118 +56,138 @@ This template demonstrates the organizational structure and best practices devel
 │       └── specs/         # Feature specifications
 │           └── example-specification.md
 ├── project-overview/       # Project-wide documentation
-│   ├── PRODUCT_PRD.md     # Main Requirements Reference (numbered sections)
-│   ├── PROJECT_STATUS.md  # Current project status (auto-generated)
-│   ├── DEVELOPMENT_CHECKLIST.md # Development tasks
-│   ├── DEVELOPMENT_WORKFLOW.md # Development process and guidelines
-│   ├── FEATURE_STATUS.md  # Feature progress tracking
-│   └── README.md          # Project overview and quick start
+│   ├── PRODUCT_PRD.md     # Main Requirements Reference
+│   ├── PROJECT_STATUS.md  # Auto-generated status (DO NOT EDIT)
+│   ├── DEVELOPMENT_WORKFLOW.md # DEPRECATED - redirects to Master Guide
+│   ├── TASK_MANAGEMENT.md # DEPRECATED - redirects to Master Guide
+│   └── README.md          # Project overview
 ├── rules/                 # Project rules and guidelines
-│   ├── project_rules.md   # General project rules
+│   ├── project_rules.md   # Trae IDE project-specific AI rules
 │   ├── git_rules.md       # Git workflow rules
 │   └── pre-commit-hook.sh # Pre-commit validation hook
 └── task-management/       # SQLite-based task tracking system
     ├── task_manager.py    # CLI for task and branch management
     ├── schema.sql         # Database schema definition
-    └── seed_data.sql      # Example seed data (customize per project)
+    └── seed_data.sql      # Example seed data
 .env.example              # Environment variable template
-.gitignore                # Standard ignores for .env, databases, etc.
+.gitignore                # Standard ignores
+QUICKSTART.md            # Initial setup guide
 ```
 
 ## Key Features of This Template
 
-### 1. Numbered PRD Structure
-The `PRODUCT_PRD.md` uses a numbered section system (1, 1.1, 1.2, etc.) that serves as the main requirements reference for all feature specifications.
+### 1. 🎯 Single Source of Truth
+The **Master Coordination Guide** consolidates all workflow information:
+- Pre-work checklist for AI assistants
+- Complete task management workflow
+- Feature development process
+- Branch naming and validation
+- Code quality standards
+- Common troubleshooting
 
-### 2. Feature-Based Organization
+### 2. 📁 Feature-Based Organization
 Each feature has its own directory under `.trae/features/` with:
 - `docs/` - Feature documentation and guides
 - `specs/` - Detailed technical specifications
+- Branch names must match folder names exactly
 
-### 3. PRD Reference System
+### 3. 🔗 PRD Reference System
 All feature specifications include:
 - **PRD References** section linking to relevant PRD sections
 - Cross-references in objectives showing traceability
 - Consistent numbering for easy navigation
 
-### 4. Development Metadata
-Each specification includes:
-- Development priority and dependencies
-- Estimated effort and timeline
-- Feature branch name (must match folder name)
-- Clear implementation tasks and success criteria
+### 4. 📊 Integrated Task Management
+- Centralized SQLite database: `.trae/task-management/<project>.db`
+- CLI interface: `python .trae/task-management/task_manager.py`
+- Auto-generated status: `.trae/project-overview/PROJECT_STATUS.md`
+- Branch validation against `.trae/features/` structure
 
-### 5. Branch Naming Convention
-Feature branches must exactly match the feature folder names:
-- Feature folder: `.trae/features/user-management/` → Branch: `feature/user-management`
-- Feature folder: `.trae/features/api-integration/` → Branch: `feature/api-integration`
-- This ensures consistency between documentation and version control
-
-### 6. Integrated Task Management (SQLite + CLI)
-- Centralized project DB: `.trae/task-management/<project>.db`
-- CLI: `python .trae/task-management/task_manager.py`
-- Auto-generated status: `.trae/project-overview/PROJECT_STATUS.md` via `sync-markdown`
-- Branch validation against `.trae/features/` via `validate-branch`
-- Optional pre-commit hook to enforce workflow
-
-## Quickstart for New Projects and AI Assistants
-
-This template is designed to be used by humans and AI assistants to bootstrap a new project with a feature-driven structure, database-backed task tracking, and auto-synced status documentation.
-
-- Read the step-by-step guide: `QUICKSTART.md`
-- Update your PRD: `.trae/project-overview/PRODUCT_PRD.md`
-- Create feature folders under `.trae/features/` matching your branch names
-- Initialize the task database and generate status with the CLI
-
-Minimal setup:
+### 5. 🌿 Streamlined Branch Workflow
 ```bash
-# Choose how to set the Project ID used for the task DB filename
-# Option A) .env file (good default for per-project config)
-echo 'TRAE_PROJECT_ID=my-project' >> .env
-# Option B) Per-project file (also supported)
-echo 'my-project' > .trae/project-id
-# Option C) Session-only environment variable
-export TRAE_PROJECT_ID=my-project
+# Branch names MUST match feature folder names
+.trae/features/user-management/ → feature/user-management
+.trae/features/api-integration/ → feature/api-integration
+```
 
+## Essential Setup Commands
+
+```bash
+# 1. Set project identifier
+echo 'TRAE_PROJECT_ID=[your-project-name]' >> .env
+
+# 2. Initialize task database
 python .trae/task-management/task_manager.py init --seed
+
+# 3. Generate status documentation
 python .trae/task-management/task_manager.py sync-markdown
+
+# 4. Validate setup
 python .trae/task-management/task_manager.py validate-branch
 ```
 
-Next, follow `QUICKSTART.md` for full project customization, rules, and daily workflows.
+## Customization for New Projects
 
-## Documentation Guidelines
+### 1. Update Master Coordination Guide
+Edit `.trae/documents/MASTER_COORDINATION_GUIDE.md`:
+- Replace `[PROJECT_NAME]` with your project name
+- Replace `[project_id]` with your project identifier
+- Update project context section
+- Customize tech stack information
+- Add project-specific features list
 
-### PRD as Single Source of Truth
-- The `PRODUCT_PRD.md` is the main requirements reference
-- All feature specs must reference relevant PRD sections
-- Use numbered sections (e.g., "PRD: 2.1, 3.1, 5.1") for traceability
+### 2. Update Product Requirements
+Edit `.trae/project-overview/PRODUCT_PRD.md`:
+- Define your product vision and requirements
+- Use numbered sections for easy referencing
+- Include all major features and specifications
 
-### Feature Specification Standards
-- Include development priority, dependencies, and effort estimates
-- Reference PRD sections in both the header and objectives
-- Use numbered sections for consistency
-- Provide clear implementation tasks and success criteria
+### 3. Create Feature Structure
+```bash
+# Create feature directories
+mkdir .trae/features/[feature-name]
+mkdir .trae/features/[feature-name]/docs
+mkdir .trae/features/[feature-name]/specs
 
-### Naming Conventions
-- Feature directories: `kebab-case` (e.g., `form-management`, `user-authentication`)
-- Feature branches: `feature/[exact-folder-name]` (e.g., `feature/form-management`, `feature/user-authentication`)
-- Specification files: descriptive names ending in `.md`
-- Documentation files: `README.md` for overviews, descriptive names for specific docs
+# Create matching branches
+git checkout -b feature/[feature-name]
+```
 
-### Maintenance
-- Update PROJECT_STATUS.md as features are completed
-- Keep PRD current with any requirement changes
-- Update feature specs when PRD sections change
-- Maintain cross-references between related features
+### 4. Initialize Task Database
+```bash
+# Customize seed data first
+edit .trae/task-management/seed_data.sql
+
+# Then initialize
+python .trae/task-management/task_manager.py init --seed
+```
+
+## Documentation Structure
+
+**IMPORTANT**: This template uses a streamlined approach:
+
+✅ **USE**: Master Coordination Guide (single source of truth)
+✅ **CUSTOMIZE**: project_rules.md for Trae IDE project-specific AI behavior
+
+The Master Coordination Guide consolidates all workflow information into a single, comprehensive document.
+
+## Benefits of This System
+
+- **Simplified**: One file instead of multiple scattered documents
+- **Consistent**: Single workflow for all team members and AI assistants
+- **Efficient**: Faster onboarding and fewer coordination issues
+- **Maintainable**: Updates in one place instead of multiple files
+- **Clear**: Step-by-step guidance without redundancy
 
 ## Example Usage
 
 See the `example-feature` directory for a complete demonstration of:
 - Proper PRD referencing
-- Numbered section structure
+- Feature specification structure
 - Development metadata inclusion
 - Implementation task organization
 - Testing and success criteria definition
 
-This structure ensures comprehensive project management, clear development guidelines, and consistent AI assistance across any project. You haven't missed anything - this is a complete, reusable framework for Trae project setup!
+---
+
+**Start with the [Master Coordination Guide](./.trae/documents/MASTER_COORDINATION_GUIDE.md) - it's the only file you need for complete project coordination!**

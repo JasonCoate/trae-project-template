@@ -1,15 +1,26 @@
 # Trae Project Template - Quickstart Guide
 
-**Goal:** Transform this template into a fully functional project with proper task management, documentation, and development workflow.
+**Goal:** Transform this template into a fully functional project with streamlined documentation, proper task management, and efficient development workflow.
+
+## 🎯 NEW STREAMLINED APPROACH
+
+**IMPORTANT**: This template now uses a **single Master Coordination Guide** instead of scattered documentation files. This makes setup faster and coordination clearer.
+
+### For AI Assistants
+✅ **Follow ONLY**: [Master Coordination Guide](./.trae/documents/MASTER_COORDINATION_GUIDE.md)  
+❌ **Ignore**: Old scattered documentation files (marked as deprecated)
+
+### For Developers
+✅ **Start with**: [Master Coordination Guide](./.trae/documents/MASTER_COORDINATION_GUIDE.md)  
+✅ **Then**: Follow this quickstart for initial setup
 
 ## Requirements
 - macOS, Linux, or Windows (via WSL)
 - Python 3.9+ (with standard library sqlite3 module)
 - Git (for version control and branching)
 - Optional: A code editor/IDE and shell access
-- Optional: Pre-commit hook support (standard Git hooks)
 
-## 🚀 Quick Setup (5 minutes)
+## 🚀 Quick Setup (3 minutes)
 
 ### Step 1: Copy Template and Set Project Identity
 
@@ -18,15 +29,9 @@
 cp -r trae-project-template/ my-awesome-project/
 cd my-awesome-project/
 
-# Choose how to set the Project ID used for the task DB filename
-# Option A) .env file (recommended for per-project config)
-cp .env.example .env  # Copy template and edit, or:
+# Set project ID (recommended: .env file)
+cp .env.example .env
 echo 'TRAE_PROJECT_ID=my-awesome-project' >> .env
-# Option B) Per-project file (alternative to .env)
-echo "my-awesome-project" > .trae/project-id
-# Option C) Session-only env var (good for CI or temporary work)
-export TRAE_PROJECT_ID=my-awesome-project
-# Option D) Do nothing – the folder name will be used automatically as fallback
 ```
 
 ### Step 2: Initialize Task Management System
@@ -52,13 +57,34 @@ git checkout -b feature/example-feature
 python .trae/task-management/task_manager.py validate-branch
 ```
 
+**✅ You're ready! Now follow the [Master Coordination Guide](./.trae/documents/MASTER_COORDINATION_GUIDE.md) for all development workflow.**
+
 ---
 
 ## 📋 Complete Project Customization
 
-### Phase 1: Define Your Project
+### Phase 1: Customize Master Coordination Guide
 
-#### 1.1 Update Core Project Documents
+**File: `.trae/documents/MASTER_COORDINATION_GUIDE.md`**
+
+1. **Replace placeholders:**
+   - `[PROJECT_NAME]` → Your actual project name
+   - `[project_id]` → Your project identifier
+   - `[Brief project description]` → Your project description
+   - `[Current development phase]` → Your current phase
+   - `[List main technologies]` → Your tech stack
+
+2. **Update project context section:**
+   - Add your specific tech stack
+   - List your Phase 1 features
+   - Customize development standards for your project
+
+3. **Customize workflow sections:**
+   - Adjust pre-work checklist if needed
+   - Update branch naming examples
+   - Add project-specific troubleshooting
+
+### Phase 2: Define Your Project Requirements
 
 **File: `.trae/project-overview/PRODUCT_PRD.md`**
 - Replace `[PROJECT_NAME]` with your actual project name
@@ -70,14 +96,8 @@ python .trae/task-management/task_manager.py validate-branch
 - Update project title and description
 - Replace placeholder installation/setup instructions
 - Update technology stack information
-- Keep references to `.trae/` documentation
 
-**File: `.trae/project-overview/README.md`**
-- Update project overview and feature descriptions
-- Replace example features with your actual features
-- Update technology stack and architecture information
-
-#### 1.2 Set Up Your Feature Structure
+### Phase 3: Set Up Your Feature Structure
 
 ```bash
 # Remove example feature (after understanding its structure)
@@ -87,54 +107,14 @@ rm -rf .trae/features/example-feature/
 mkdir -p .trae/features/user-authentication/{docs,specs}
 mkdir -p .trae/features/api-integration/{docs,specs}
 mkdir -p .trae/features/dashboard/{docs,specs}
-
-# Copy the example specification as a template
-cp .trae/features/example-feature/specs/example-specification.md .trae/features/user-authentication/specs/authentication-spec.md
 ```
 
-#### 1.3 Customize Database Schema (Optional)
-
-**File: `.trae/task-management/schema.sql`**
-- Add project-specific tables if needed
-- Modify the `features`, `tasks`, or `branches` tables for your workflow
-- Add custom fields or constraints
+### Phase 4: Customize Database with Your Features
 
 **File: `.trae/task-management/seed_data.sql`**
 - Replace example features with your actual features
 - Add real tasks for your project's first phase
 - Set appropriate priorities and dependencies
-
----
-
-### Phase 2: Configure Your Development Workflow
-
-#### 2.1 Update Project Rules
-
-**File: `.trae/rules/project_rules.md`**
-- Update mandatory checks for your project type
-- Modify AI behavior guidelines for your technology stack
-- Update branch naming examples to match your features
-- Customize CLI commands section if you modify the database
-
-**File: `.trae/rules/git_rules.md`**
-- Adjust commit message conventions for your team
-- Update branch examples to match your features
-- Modify merge/review requirements
-
-#### 2.2 Set Up Pre-commit Automation (Recommended)
-
-```bash
-# Install the pre-commit hook
-cp .trae/rules/pre-commit-hook.sh .git/hooks/pre-commit
-chmod +x .git/hooks/pre-commit
-
-# Test it works
-git add .
-git commit -m "test: verify pre-commit hook"
-# Should validate branch and database initialization
-```
-
-#### 2.3 Initialize with Your Real Data
 
 ```bash
 # Clear example data and start fresh
@@ -149,62 +129,14 @@ python .trae/task-management/task_manager.py sync-markdown
 
 ---
 
-### Phase 3: Start Development
+## 🎯 Understanding the New System
 
-#### 3.1 Choose Your First Feature
+### Key Components
 
-```bash
-# List available features from your database
-python .trae/task-management/task_manager.py list-tasks
-
-# Create a proper feature branch
-git checkout main
-git checkout -b feature/user-authentication
-
-# Validate branch (should pass)
-python .trae/task-management/task_manager.py validate-branch
-```
-
-#### 3.2 Write Feature Specifications
-
-**Use `.trae/features/example-feature/specs/example-specification.md` as your template:**
-
-1. **Copy the template:**
-   ```bash
-   cp .trae/features/example-feature/specs/example-specification.md \
-      .trae/features/user-authentication/specs/auth-spec.md
-   ```
-
-2. **Customize the specification:**
-   - Update title and description
-   - Reference relevant PRD sections (e.g., "PRD: 2.1, 3.2, 5.1")
-   - Define your actual implementation tasks
-   - Set realistic effort estimates and dependencies
-
-3. **Create feature documentation:**
-   ```bash
-   # Create feature overview
-   echo "# User Authentication Feature" > .trae/features/user-authentication/docs/README.md
-   ```
-
-#### 3.3 Track Your Progress
-
-```bash
-# Update task status as you work
-python .trae/task-management/task_manager.py update-task 1 in_progress
-
-# Regenerate status document
-python .trae/task-management/task_manager.py sync-markdown
-
-# Check updated status
-cat .trae/project-overview/PROJECT_STATUS.md
-```
-
----
-
-## 🎯 Understanding the System
-
-### What Each Component Does
+**`.trae/documents/MASTER_COORDINATION_GUIDE.md`** 🎯
+- **Purpose:** Single source of truth for ALL workflow guidance
+- **Contains:** Pre-work checklist, task management, development process, troubleshooting
+- **Usage:** The ONLY file AI assistants and developers need to follow
 
 **`.trae/project-overview/PRODUCT_PRD.md`**
 - **Purpose:** Single source of truth for all requirements
@@ -226,22 +158,43 @@ cat .trae/project-overview/PROJECT_STATUS.md
 - **Source:** Generated from SQLite database via `sync-markdown`
 - **Usage:** Never edit manually - always use CLI to update
 
+### What's Different (New vs Old)
+
+✅ **NEW APPROACH:**
+- Single Master Coordination Guide
+- Streamlined workflow
+- Clear step-by-step guidance
+- No redundancy or confusion
+
+❌ **OLD APPROACH (Deprecated):**
+- Multiple scattered files (project_rules.md, DEVELOPMENT_WORKFLOW.md, TASK_MANAGEMENT.md)
+- Redundant information
+- Coordination issues
+- Harder to maintain
+
 ### Key Principles
 
-1. **Branch Names = Feature Folders:** Every branch must match a folder in `.trae/features/`
-2. **PRD References:** All specs reference numbered PRD sections for traceability
-3. **Database-Driven Status:** PROJECT_STATUS.md is generated from the database
-4. **CLI-First Workflow:** Use `task_manager.py` for all task management
+1. **Single Source of Truth:** Master Coordination Guide contains ALL workflow information
+2. **Branch Names = Feature Folders:** Every branch must match a folder in `.trae/features/`
+3. **PRD References:** All specs reference numbered PRD sections for traceability
+4. **Database-Driven Status:** PROJECT_STATUS.md is generated from the database
+5. **CLI-First Workflow:** Use `task_manager.py` for all task management
 
-### Common Workflows
+---
 
-**Starting a new feature:**
+## 🔧 Common Workflows
+
+### Starting a New Feature
+
 ```bash
-# 1. Create feature folder structure
-mkdir -p .trae/features/my-feature/{docs,specs}
+# 1. Follow Master Coordination Guide pre-work checklist
+git status && git checkout main && git pull
+echo 'TRAE_PROJECT_ID=my-project' >> .env
+python .trae/task-management/task_manager.py init --seed
+python .trae/task-management/task_manager.py sync-markdown
 
-# 2. Add tasks to database (manually edit seed_data.sql and reinit, or use CLI)
-python .trae/task-management/task_manager.py update-task <id> todo
+# 2. Create feature folder structure
+mkdir -p .trae/features/my-feature/{docs,specs}
 
 # 3. Create matching branch
 git checkout -b feature/my-feature
@@ -250,7 +203,8 @@ git checkout -b feature/my-feature
 python .trae/task-management/task_manager.py validate-branch
 ```
 
-**Daily development:**
+### Daily Development
+
 ```bash
 # Check current priorities
 python .trae/task-management/task_manager.py status
@@ -287,18 +241,14 @@ git checkout -b feature/existing-feature-folder
 
 **"TRAE_PROJECT_ID not set" warning:**
 ```bash
-# Solution: Use .env file (recommended for per-project config)
+# Solution: Use .env file (recommended)
 echo 'TRAE_PROJECT_ID=my-project' >> .env
-# Alternative: Use per-project file
-echo 'my-project' > .trae/project-id
-# Or: Set environment variable for this session only
-export TRAE_PROJECT_ID=my-project
 ```
 
 ### Getting Help
 
-1. **Check example feature:** `.trae/features/example-feature/` shows proper structure
-2. **Review project rules:** `.trae/rules/project_rules.md` has complete guidelines
+1. **Check Master Coordination Guide:** `.trae/documents/MASTER_COORDINATION_GUIDE.md` has complete guidance
+2. **Check example feature:** `.trae/features/example-feature/` shows proper structure
 3. **Validate setup:** Run `python .trae/task-management/task_manager.py status`
 4. **Check database:** Use `sqlite3 .trae/task-management/[project].db` for direct access
 
@@ -307,14 +257,22 @@ export TRAE_PROJECT_ID=my-project
 ## ✅ Success Checklist
 
 - [ ] Copied template to new project directory
-- [ ] Set project ID via `.env` (recommended), `.trae/project-id`, or `TRAE_PROJECT_ID`
+- [ ] Set project ID via `.env` file
+- [ ] **Customized Master Coordination Guide with project-specific information**
 - [ ] Customized `PRODUCT_PRD.md` with real requirements
 - [ ] Created feature folders matching your project needs
 - [ ] Updated `seed_data.sql` with real features and tasks
 - [ ] Initialized database with `init --seed`
 - [ ] Generated initial status with `sync-markdown`
 - [ ] Created and validated first feature branch
-- [ ] Set up pre-commit hook (optional but recommended)
 - [ ] Updated main README.md with project-specific information
 
-**You're ready to start development!** The task management system will guide your progress and keep documentation synchronized automatically.
+**🎉 You're ready to start development!**
+
+**Next Steps:**
+1. Follow the [Master Coordination Guide](./.trae/documents/MASTER_COORDINATION_GUIDE.md) for all development workflow
+2. Use the pre-work checklist before starting any feature
+3. Update task status regularly using the CLI
+4. Keep the Master Coordination Guide as your single source of truth
+
+**Remember:** The Master Coordination Guide is the ONLY file you need for project coordination. All other documentation is supplementary.

@@ -1,63 +1,43 @@
 # [PROJECT_NAME] Project Rules
 
-**MAIN COORDINATION FILE** - This file serves as the central coordination point for all project activities. All AI assistance must follow these guidelines to ensure consistency, quality, and adherence to project specifications.
-
-## CRITICAL: Pre-Feature Development Workflow
-
-### MANDATORY Checks Before Starting Any Feature Work
-1. **Git Status Check**: ALWAYS verify current branch and working directory status
-   ```bash
-   git status
-   git branch
-   ```
-2. **Previous Feature Completion**: Ensure the previous feature is FULLY completed:
-   - All tasks marked as ✅ in PROJECT_STATUS.md
-   - All changes committed and pushed
-   - Feature branch merged to main
-   - Working directory clean
-3. **Branch Management**: 
-   - Switch to main branch: `git checkout main`
-   - Pull latest changes: `git pull origin main`
-   - Create new feature branch: `git checkout -b feature/[exact-folder-name]`
-4. **Documentation Update**: Update PROJECT_STATUS.md with new feature progress before making any code changes
-5. **Task DB Ready**: Ensure the task DB is initialized and synced
-   ```bash
-   # Choose one per-project option (preferred)
-   echo 'TRAE_PROJECT_ID=my-project' >> .env
-   # or
-   echo 'my-project' > .trae/project-id
-   # or use a session-only env var
-   export TRAE_PROJECT_ID=my-project
-
-   python .trae/task-management/task_manager.py init --seed
-   python .trae/task-management/task_manager.py validate-branch
-   python .trae/task-management/task_manager.py sync-markdown
-   ```
-
-### NEVER Begin Feature Work Without:
-- ✅ Confirming previous feature is complete and merged
-- ✅ Verifying clean working directory
-- ✅ Creating proper feature branch
-- ✅ Updating PROJECT_STATUS.md with current task
-- ✅ Initializing the task DB and generating status markdown
+**TRAE IDE PROJECT RULES** - These rules guide AI behavior for this specific project.
 
 ## Project Context
 
-- **Project:** [PROJECT_NAME] - [Brief project description]
-- **Current Phase:** Phase 1 (Foundation)
-- **Architecture:** [Technology stack and architecture description]
-- **Frontend:** [Frontend technology stack]
-- **Backend:** [Backend technology stack]
+- **Project**: [PROJECT_NAME] - [BRIEF_PROJECT_DESCRIPTION]
+- **Current Phase**: [CURRENT_DEVELOPMENT_PHASE]
+- **Architecture**: [MAIN_ARCHITECTURE_DESCRIPTION]
+- **Frontend**: [FRONTEND_TECHNOLOGIES]
+- **Backend**: [BACKEND_TECHNOLOGIES]
+- **Database**: [DATABASE_TECHNOLOGY]
 
 ## AI Behavior Guidelines
 
 ### Always Reference Project Documentation (In Priority Order)
 1. **THIS FILE (.trae/rules/project_rules.md)** - Main coordination and workflow rules
-2. **.trae/project-overview/PROJECT_STATUS.md** - Current progress and active tasks (auto-generated from DB)
-3. **.trae/project-overview/PRODUCT_PRD.md** - Foundational product vision and requirements
-4. **.trae/project-overview/DEVELOPMENT_WORKFLOW.md** - Development workflow guidelines
+2. **.trae/documents/MASTER_COORDINATION_GUIDE.md** - Complete workflow guide
+3. **.trae/project-overview/PROJECT_STATUS.md** - Current progress and active tasks (auto-generated from DB)
+4. **.trae/project-overview/PRODUCT_PRD.md** - Foundational product vision and requirements
 5. **.trae/rules/git_rules.md** - Version control and commit standards
 6. **Feature-specific docs** - .trae/features/[feature-name]/docs/ and specs/
+
+### Pre-Work Requirements
+Before ANY feature work, AI must execute these steps:
+
+```bash
+# 1. Check git status and ensure clean working directory
+git status && git checkout main && git pull
+
+# 2. Set project ID for task database
+echo 'TRAE_PROJECT_ID=[project_id]' >> .env
+
+# 3. Initialize and sync task management
+python .trae/task-management/task_manager.py init --seed
+python .trae/task-management/task_manager.py sync-markdown
+
+# 4. Create feature branch (MUST match .trae/features/ folder name)
+git checkout -b feature/[exact-folder-name]
+```
 
 ### Documentation Update Requirements
 - ALWAYS update task status via CLI where applicable
@@ -80,13 +60,32 @@
 - Ensure feature implementations meet the objectives defined in feature specifications
 - Reference development phase, priority, and dependencies from feature specs
 
-### Code Implementation Standards
-- Follow [LANGUAGE/FRAMEWORK] coding standards and best practices
-- Use established naming conventions ([NAMING_CONVENTION])
-- Implement proper security measures ([SECURITY_REQUIREMENTS])
+## Code Implementation Standards
+
+### Technology-Specific Rules
+- Follow [FRAMEWORK] and [LANGUAGE] best practices
+- Use [NAMING_CONVENTION] for variables/functions, [COMPONENT_NAMING] for components
+- Implement proper authentication, input validation, and data sanitization
 - Add comprehensive error handling and validation
 
-### CLI and Task DB
+### Code Quality Requirements
+- Write clean, readable, and maintainable code
+- Follow established project patterns and conventions
+- Include appropriate comments for complex logic
+- Ensure proper TypeScript typing (if applicable)
+- Follow security best practices
+
+### Testing Standards
+- Test all features before marking checklist items complete
+- Verify cross-browser compatibility and responsive design
+- Test with different user roles and permissions
+- Validate security measures and input sanitization
+- Ensure no console errors or warnings
+- Follow testing checklists defined in feature specifications
+
+## Task Management
+
+### CLI and Task Database
 - CLI entrypoint: `python .trae/task-management/task_manager.py`
 - Set project id for DB filename via `.env`, `.trae/project-id`, or `TRAE_PROJECT_ID` env var
 - Commands:
@@ -97,40 +96,70 @@
   - `update-task <id> <status>` - Update status (todo|in_progress|completed|blocked)
   - `sync-markdown` - Generate `.trae/project-overview/PROJECT_STATUS.md`
 
-### Quality and Testing Standards
-- Test all features before marking checklist items complete
-- Verify cross-browser compatibility and responsive design
-- Test with different user roles and permissions
-- Validate security measures and input sanitization
-- Ensure no console errors or warnings
-- Follow testing checklists defined in feature specifications
+### Task Update Pattern
+1. Start task: `update-task [id] in_progress`
+2. Complete task: `update-task [id] completed`
+3. Regenerate docs: `sync-markdown`
+4. Commit changes with descriptive message
 
-### File Organization
-- **Feature Specifications:** Place in .trae/features/[feature-name]/specs/
-- **Feature Documentation:** Place in .trae/features/[feature-name]/docs/
-- **Task DB:** `.trae/task-management/<project>.db`
-- **Schema/Seeds:** `.trae/task-management/schema.sql` and `seed_data.sql`
+## File Organization
 
-### Communication Style
+- **Feature Specifications**: Place in .trae/features/[feature-name]/specs/
+- **Feature Documentation**: Place in .trae/features/[feature-name]/docs/
+- **Task DB**: `.trae/task-management/<project>.db`
+- **Schema/Seeds**: `.trae/task-management/schema.sql` and `seed_data.sql`
+- **Project Rules**: `.trae/rules/project_rules.md` (this file)
+- **Git Rules**: `.trae/rules/git_rules.md`
+
+## Communication Style
+
 - Provide clear, actionable feedback
 - Reference specific checklist items when completing tasks
 - Explain technical decisions and trade-offs
 - Suggest improvements and optimizations
 - Always prioritize user experience and best practices
+- Use professional but friendly tone
+- Be concise but thorough in explanations
 
-### Development Focus Areas
-- **Foundation:** [Core system architecture and basic functionality]
-- **Enhancement:** [Advanced features and user experience improvements]
-- **Optimization:** [Performance, analytics, and advanced integrations]
+## Development Focus Areas
+
+### Current Phase Priorities
+- **[PRIORITY_1]**: [Description]
+- **[PRIORITY_2]**: [Description]
+- **[PRIORITY_3]**: [Description]
+
+### Future Enhancements
+- **[ENHANCEMENT_1]**: [Description]
+- **[ENHANCEMENT_2]**: [Description]
+- **[ENHANCEMENT_3]**: [Description]
 
 ## Key Project Files
+
+- `.trae/documents/MASTER_COORDINATION_GUIDE.md` - Complete workflow guide
 - `.trae/project-overview/PRODUCT_PRD.md` - Product Requirements Document
 - `.trae/project-overview/PROJECT_STATUS.md` - Main progress tracker (auto-generated)
-- `.trae/project-overview/DEVELOPMENT_WORKFLOW.md` - Development workflow guidelines
-- `.trae/project-overview/README.md` - Project overview and setup
+- `.trae/rules/project_rules.md` - This file (project-specific AI rules)
 - `.trae/rules/git_rules.md` - Git workflow and commit standards
 - `.trae/features/[feature-name]/docs/` - Feature-specific documentation
 - `.trae/features/[feature-name]/specs/` - Feature specifications
-- `[MAIN_FILE]` - Main project file
+- `[MAIN_PROJECT_FILE]` - [Description]
 - `[KEY_DIRECTORY_1]/` - [Description]
 - `[KEY_DIRECTORY_2]/` - [Description]
+
+## Project-Specific Rules
+
+### Custom Guidelines
+[Add any project-specific rules, conventions, or requirements here]
+
+### API Restrictions
+[List any APIs or libraries that should be avoided]
+
+### Performance Requirements
+[Specify any performance benchmarks or requirements]
+
+### Security Considerations
+[Outline any specific security requirements or considerations]
+
+---
+
+**Note**: This file contains project-specific rules for Trae IDE AI agents. Modify the placeholders (text in [BRACKETS]) to match your project's specific requirements and context.
