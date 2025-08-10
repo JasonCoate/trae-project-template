@@ -113,6 +113,27 @@ cd [project-name]
 | [Feature 2] | Medium | Planned | 0% | Feature 1 |
 | [Feature 3] | Low | Planned | 0% | Feature 2 |
 
+## Task Management (Integrated)
+
+This project uses an integrated SQLite-based task management system. See the full guide: `.trae/project-overview/TASK_MANAGEMENT.md`.
+
+Quick commands:
+```bash
+# Choose how to set the Project ID
+# A) .env file (per-project)
+echo 'TRAE_PROJECT_ID=my-project' >> .env
+# B) .trae/project-id file
+echo 'my-project' > .trae/project-id
+# C) Session-only environment variable
+export TRAE_PROJECT_ID=my-project
+
+python .trae/task-management/task_manager.py init --seed
+python .trae/task-management/task_manager.py validate-branch
+python .trae/task-management/task_manager.py sync-markdown
+python .trae/task-management/task_manager.py list-tasks --feature example-feature
+python .trae/task-management/task_manager.py update-task 1 completed
+```
+
 ## Development Guidelines
 
 ### Code Standards

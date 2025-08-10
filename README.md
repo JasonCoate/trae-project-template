@@ -1,6 +1,6 @@
 # Trae Project Template
 
-This template demonstrates the organizational structure and best practices developed for Trae AI projects, featuring a feature-based architecture with comprehensive documentation and traceability.
+This template demonstrates the organizational structure and best practices developed for Trae AI projects, featuring a feature-based architecture with comprehensive documentation, traceability, and integrated task management.
 
 ## Directory Structure
 
@@ -14,14 +14,21 @@ This template demonstrates the organizational structure and best practices devel
 │           └── example-specification.md
 ├── project-overview/       # Project-wide documentation
 │   ├── PRODUCT_PRD.md     # Main Requirements Reference (numbered sections)
-│   ├── PROJECT_STATUS.md  # Current project status
+│   ├── PROJECT_STATUS.md  # Current project status (auto-generated)
 │   ├── DEVELOPMENT_CHECKLIST.md # Development tasks
 │   ├── DEVELOPMENT_WORKFLOW.md # Development process and guidelines
 │   ├── FEATURE_STATUS.md  # Feature progress tracking
 │   └── README.md          # Project overview and quick start
-└── rules/                 # Project rules and guidelines
-    ├── project_rules.md   # General project rules
-    └── git_rules.md       # Git workflow rules
+├── rules/                 # Project rules and guidelines
+│   ├── project_rules.md   # General project rules
+│   ├── git_rules.md       # Git workflow rules
+│   └── pre-commit-hook.sh # Pre-commit validation hook
+└── task-management/       # SQLite-based task tracking system
+    ├── task_manager.py    # CLI for task and branch management
+    ├── schema.sql         # Database schema definition
+    └── seed_data.sql      # Example seed data (customize per project)
+.env.example              # Environment variable template
+.gitignore                # Standard ignores for .env, databases, etc.
 ```
 
 ## Key Features of This Template
@@ -53,14 +60,38 @@ Feature branches must exactly match the feature folder names:
 - Feature folder: `.trae/features/api-integration/` → Branch: `feature/api-integration`
 - This ensures consistency between documentation and version control
 
-## Getting Started
+### 6. Integrated Task Management (SQLite + CLI)
+- Centralized project DB: `.trae/task-management/<project>.db`
+- CLI: `python .trae/task-management/task_manager.py`
+- Auto-generated status: `.trae/project-overview/PROJECT_STATUS.md` via `sync-markdown`
+- Branch validation against `.trae/features/` via `validate-branch`
+- Optional pre-commit hook to enforce workflow
 
-1. **Copy this template** to your new project directory
-2. **Update PRODUCT_PRD.md** with your project's specific requirements using the numbered structure
-3. **Create feature directories** under `.trae/features/` for each major feature
-4. **Write feature specifications** using the example template, ensuring PRD references
-5. **Customize project rules** for your specific technology stack and workflow
-6. **Update status documents** regularly as development progresses
+## Quickstart for New Projects and AI Assistants
+
+This template is designed to be used by humans and AI assistants to bootstrap a new project with a feature-driven structure, database-backed task tracking, and auto-synced status documentation.
+
+- Read the step-by-step guide: `QUICKSTART.md`
+- Update your PRD: `.trae/project-overview/PRODUCT_PRD.md`
+- Create feature folders under `.trae/features/` matching your branch names
+- Initialize the task database and generate status with the CLI
+
+Minimal setup:
+```bash
+# Choose how to set the Project ID used for the task DB filename
+# Option A) .env file (good default for per-project config)
+echo 'TRAE_PROJECT_ID=my-project' >> .env
+# Option B) Per-project file (also supported)
+echo 'my-project' > .trae/project-id
+# Option C) Session-only environment variable
+export TRAE_PROJECT_ID=my-project
+
+python .trae/task-management/task_manager.py init --seed
+python .trae/task-management/task_manager.py sync-markdown
+python .trae/task-management/task_manager.py validate-branch
+```
+
+Next, follow `QUICKSTART.md` for full project customization, rules, and daily workflows.
 
 ## Documentation Guidelines
 

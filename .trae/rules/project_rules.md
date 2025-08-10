@@ -20,12 +20,26 @@
    - Pull latest changes: `git pull origin main`
    - Create new feature branch: `git checkout -b feature/[exact-folder-name]`
 4. **Documentation Update**: Update PROJECT_STATUS.md with new feature progress before making any code changes
+5. **Task DB Ready**: Ensure the task DB is initialized and synced
+   ```bash
+   # Choose one per-project option (preferred)
+   echo 'TRAE_PROJECT_ID=my-project' >> .env
+   # or
+   echo 'my-project' > .trae/project-id
+   # or use a session-only env var
+   export TRAE_PROJECT_ID=my-project
+
+   python .trae/task-management/task_manager.py init --seed
+   python .trae/task-management/task_manager.py validate-branch
+   python .trae/task-management/task_manager.py sync-markdown
+   ```
 
 ### NEVER Begin Feature Work Without:
 - ✅ Confirming previous feature is complete and merged
 - ✅ Verifying clean working directory
 - ✅ Creating proper feature branch
 - ✅ Updating PROJECT_STATUS.md with current task
+- ✅ Initializing the task DB and generating status markdown
 
 ## Project Context
 
@@ -39,15 +53,16 @@
 
 ### Always Reference Project Documentation (In Priority Order)
 1. **THIS FILE (.trae/rules/project_rules.md)** - Main coordination and workflow rules
-2. **.trae/project-overview/PROJECT_STATUS.md** - Current progress and active tasks
+2. **.trae/project-overview/PROJECT_STATUS.md** - Current progress and active tasks (auto-generated from DB)
 3. **.trae/project-overview/PRODUCT_PRD.md** - Foundational product vision and requirements
 4. **.trae/project-overview/DEVELOPMENT_WORKFLOW.md** - Development workflow guidelines
 5. **.trae/rules/git_rules.md** - Version control and commit standards
 6. **Feature-specific docs** - .trae/features/[feature-name]/docs/ and specs/
 
 ### Documentation Update Requirements
-- ALWAYS update PROJECT_STATUS.md when starting, progressing, or completing tasks
-- Mark tasks with proper status: ⏳ → 🔄 → ✅
+- ALWAYS update task status via CLI where applicable
+  - Example: `python .trae/task-management/task_manager.py update-task <id> completed`
+- Regenerate status after updates: `python .trae/task-management/task_manager.py sync-markdown`
 - Document any blockers or architectural decisions
 - Update "Current Working Files" and "Next Immediate Tasks" sections
 
@@ -71,25 +86,16 @@
 - Implement proper security measures ([SECURITY_REQUIREMENTS])
 - Add comprehensive error handling and validation
 
-### Technology-Specific Guidelines
-
-**Backend [TECHNOLOGY]:**
-- [Backend-specific guideline 1]
-- [Backend-specific guideline 2]
-- [Backend-specific guideline 3]
-- [Backend-specific guideline 4]
-
-**Frontend [TECHNOLOGY]:**
-- [Frontend-specific guideline 1]
-- [Frontend-specific guideline 2]
-- [Frontend-specific guideline 3]
-- [Frontend-specific guideline 4]
-
-**[COMPONENT/FEATURE] Development:**
-- [Component-specific guideline 1]
-- [Component-specific guideline 2]
-- [Component-specific guideline 3]
-- [Component-specific guideline 4]
+### CLI and Task DB
+- CLI entrypoint: `python .trae/task-management/task_manager.py`
+- Set project id for DB filename via `.env`, `.trae/project-id`, or `TRAE_PROJECT_ID` env var
+- Commands:
+  - `init [--seed]` - Initialize DB from schema.sql (with optional seed data)
+  - `status` - Print feature summaries and completion
+  - `validate-branch` - Ensure current branch matches `.trae/features/`
+  - `list-tasks [--feature name]` - View tasks
+  - `update-task <id> <status>` - Update status (todo|in_progress|completed|blocked)
+  - `sync-markdown` - Generate `.trae/project-overview/PROJECT_STATUS.md`
 
 ### Quality and Testing Standards
 - Test all features before marking checklist items complete
@@ -102,10 +108,8 @@
 ### File Organization
 - **Feature Specifications:** Place in .trae/features/[feature-name]/specs/
 - **Feature Documentation:** Place in .trae/features/[feature-name]/docs/
-- **[FILE_TYPE_1]:** Place in `[DIRECTORY_PATH]` with `[NAMING_PATTERN]`
-- **[FILE_TYPE_2]:** Place in `[DIRECTORY_PATH]` with `[NAMING_PATTERN]`
-- **[FILE_TYPE_3]:** Organize in `[DIRECTORY_PATH]` with proper structure
-- **[FILE_TYPE_4]:** Place in `[DIRECTORY_PATH]` with appropriate subdirectories
+- **Task DB:** `.trae/task-management/<project>.db`
+- **Schema/Seeds:** `.trae/task-management/schema.sql` and `seed_data.sql`
 
 ### Communication Style
 - Provide clear, actionable feedback
@@ -121,7 +125,7 @@
 
 ## Key Project Files
 - `.trae/project-overview/PRODUCT_PRD.md` - Product Requirements Document
-- `.trae/project-overview/PROJECT_STATUS.md` - Main progress tracker
+- `.trae/project-overview/PROJECT_STATUS.md` - Main progress tracker (auto-generated)
 - `.trae/project-overview/DEVELOPMENT_WORKFLOW.md` - Development workflow guidelines
 - `.trae/project-overview/README.md` - Project overview and setup
 - `.trae/rules/git_rules.md` - Git workflow and commit standards

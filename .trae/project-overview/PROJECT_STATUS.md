@@ -139,7 +139,7 @@
 - [ ] Unit tests for new functionality
 - [ ] Integration tests for API endpoints
 - [ ] Cross-browser compatibility
-- [ ] WordPress multisite compatibility
+- [ ] Multi-environment compatibility
 - [ ] Security validation
 
 ---
